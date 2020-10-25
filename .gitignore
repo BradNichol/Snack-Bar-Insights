@@ -34,3 +34,6 @@ build/
 
 ### Scraper URLs ###
 scraperURLs.txt
+
+# environment variables
+.env
