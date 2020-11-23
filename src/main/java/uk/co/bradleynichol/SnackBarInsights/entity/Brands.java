@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.SnackBarInsights.data.entity;
+package uk.co.bradleynichol.SnackBarInsights.entity;
 
 
 import javax.persistence.Entity;
