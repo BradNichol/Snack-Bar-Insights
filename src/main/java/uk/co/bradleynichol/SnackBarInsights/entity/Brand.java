@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "brands")
-public class Brands {
+public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +15,7 @@ public class Brands {
     @Column(name = "name")
     private String name;
 
-    public Brands() {
+    public Brand() {
     }
 
     public String getId() {
