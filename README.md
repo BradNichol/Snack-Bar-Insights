@@ -8,3 +8,5 @@ Areas of insight will be:
 - Reviews
 - Nutritional information
 - Brands
+
+### This is my test project for learning Java & Spring Boot
