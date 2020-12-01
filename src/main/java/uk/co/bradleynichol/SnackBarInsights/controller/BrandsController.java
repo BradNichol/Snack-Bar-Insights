@@ -2,10 +2,15 @@ package uk.co.bradleynichol.SnackBarInsights.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
 import uk.co.bradleynichol.SnackBarInsights.service.BrandServiceImpl;
 
 @RestController
@@ -15,8 +20,14 @@ public class BrandsController {
     @Autowired
     private BrandServiceImpl brandService;
 
-    //@PostMapping("/add")
-    //public ResponseEntity<Void> add
+    @PostMapping("/add")
+    public ResponseEntity<Void> addBrand(@RequestBody Brand brand, UriComponentsBuilder builder) {
+        boolean flag = brandService.addBrand(brand);
+        if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(builder.path("/api/brands").buildAndExpand(brand.getId()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
 
 
 
