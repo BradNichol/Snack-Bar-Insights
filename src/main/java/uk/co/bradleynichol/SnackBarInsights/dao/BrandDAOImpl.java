@@ -1,8 +1,13 @@
 package uk.co.bradleynichol.SnackBarInsights.dao;
 
+import org.springframework.stereotype.Repository;
 import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
 
-public class IBrandDAOImpl implements IBrandDAO {
+import javax.transaction.Transactional;
+
+@Transactional
+@Repository
+public class BrandDAOImpl implements IBrandDAO {
 
     @Override
     public void addBrand(Brand brand) {
