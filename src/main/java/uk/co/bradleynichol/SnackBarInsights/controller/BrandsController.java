@@ -14,8 +14,13 @@ import uk.co.bradleynichol.SnackBarInsights.service.BrandServiceImpl;
 @RequestMapping("/api/brands")
 public class BrandsController {
 
-    @Autowired
+
     private BrandServiceImpl brandService;
+
+    @Autowired
+    public BrandsController(BrandServiceImpl brandService) {
+        this.brandService = brandService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Void> addBrand(@RequestBody Brand brand, UriComponentsBuilder builder) {
