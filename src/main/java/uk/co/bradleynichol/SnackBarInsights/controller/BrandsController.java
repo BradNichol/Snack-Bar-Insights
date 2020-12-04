@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
 import uk.co.bradleynichol.SnackBarInsights.service.BrandServiceImpl;
@@ -27,6 +24,12 @@ public class BrandsController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/api/brands").buildAndExpand(brand.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Brand> getBrandById(@PathVariable("id") String id) {
+        Brand brand = brandService.getBrandById(id);
+        return new ResponseEntity<Brand>(brand, HttpStatus.OK);
     }
 
 

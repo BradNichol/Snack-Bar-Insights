@@ -16,4 +16,9 @@ public class BrandServiceImpl implements IBrandService {
         brandDAO.addBrand(brand);
         return true;
     }
+
+    @Override
+    public Brand getBrandById(String brandId) {
+        return brandDAO.getBrandById(brandId);
+    }
 }
