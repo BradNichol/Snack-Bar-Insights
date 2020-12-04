@@ -37,6 +37,10 @@ public class BrandsController {
         return new ResponseEntity<Brand>(brand, HttpStatus.OK);
     }
 
-
+    @PutMapping("/update")
+    public ResponseEntity<Brand> updateBrand(@RequestBody Brand brand) {
+        brandService.updateBrand(brand);
+        return new ResponseEntity<Brand>(brand, HttpStatus.OK);
+    }
 
 }

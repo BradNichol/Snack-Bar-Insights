@@ -23,4 +23,11 @@ public class BrandDAOImpl implements IBrandDAO {
     public Brand getBrandById(String brandId) {
         return entityManager.find(Brand.class, brandId);
     }
+
+    @Override
+    public void updateBrand(Brand brand) {
+        Brand getBrand = getBrandById(brand.getId());
+        getBrand.setName(brand.getName());
+        entityManager.flush();
+    }
 }
