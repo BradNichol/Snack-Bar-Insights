@@ -7,9 +7,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.io.IOException;
 
 
-public class ScraperTest {
+public class Scraper {
 
-    public void test(String url, String titleXpath, String priceXpath){
+    public void run(String url, String titleXpath, String priceXpath){
         WebClient webClient = new WebClient();
         webClient.getOptions().setUseInsecureSSL(true);
         webClient.getOptions().setCssEnabled(false);
