@@ -30,4 +30,9 @@ public class BrandDAOImpl implements IBrandDAO {
         getBrand.setName(brand.getName());
         entityManager.flush();
     }
+
+    @Override
+    public void deleteBrand(String brandId) {
+        entityManager.remove(getBrandById(brandId));
+    }
 }

@@ -26,4 +26,9 @@ public class BrandServiceImpl implements IBrandService {
     public void updateBrand(Brand brand) {
         brandDAO.updateBrand(brand);
     }
+
+    @Override
+    public void deleteBrand(String brandId) {
+        brandDAO.deleteBrand(brandId);
+    }
 }
