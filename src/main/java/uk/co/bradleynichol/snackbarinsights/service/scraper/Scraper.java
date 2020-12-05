@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.snackbarinsights.service.Scraper;
+package uk.co.bradleynichol.snackbarinsights.service.scraper;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
@@ -24,6 +24,8 @@ public class Scraper {
             System.out.println(price.getTextContent().trim());
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            webClient.close();
         }
 
 
