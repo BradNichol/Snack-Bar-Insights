@@ -1,7 +1,7 @@
-package uk.co.bradleynichol.SnackBarInsights.dao;
+package uk.co.bradleynichol.snackbarinsights.dao;
 
 import org.springframework.stereotype.Repository;
-import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

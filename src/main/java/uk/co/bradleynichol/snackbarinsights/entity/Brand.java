@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.SnackBarInsights.entity;
+package uk.co.bradleynichol.snackbarinsights.entity;
 
 
 import org.hibernate.annotations.GenericGenerator;

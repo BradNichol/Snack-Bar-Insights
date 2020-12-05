@@ -1,6 +1,6 @@
-package uk.co.bradleynichol.SnackBarInsights.dao;
+package uk.co.bradleynichol.snackbarinsights.dao;
 
-import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 public interface IBrandDAO {
     void addBrand(Brand brand);

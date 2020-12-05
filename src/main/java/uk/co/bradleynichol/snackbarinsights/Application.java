@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.SnackBarInsights;
+package uk.co.bradleynichol.snackbarinsights;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

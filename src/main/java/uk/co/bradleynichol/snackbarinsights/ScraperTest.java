@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.SnackBarInsights;
+package uk.co.bradleynichol.snackbarinsights;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;

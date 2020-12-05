@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.SnackBarInsights.controller;
+package uk.co.bradleynichol.snackbarinsights.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
-import uk.co.bradleynichol.SnackBarInsights.service.BrandServiceImpl;
+import uk.co.bradleynichol.snackbarinsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 
 @RestController
 @RequestMapping("/api/brands")

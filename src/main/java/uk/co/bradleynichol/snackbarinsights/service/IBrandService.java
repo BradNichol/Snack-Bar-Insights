@@ -1,7 +1,7 @@
-package uk.co.bradleynichol.SnackBarInsights.service;
+package uk.co.bradleynichol.snackbarinsights.service;
 
 
-import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 public interface IBrandService {
     boolean addBrand(Brand brand);

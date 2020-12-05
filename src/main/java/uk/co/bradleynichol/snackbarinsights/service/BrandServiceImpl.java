@@ -1,9 +1,9 @@
-package uk.co.bradleynichol.SnackBarInsights.service;
+package uk.co.bradleynichol.snackbarinsights.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.SnackBarInsights.dao.IBrandDAO;
-import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.dao.IBrandDAO;
+import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 @Service
 public class BrandServiceImpl implements IBrandService {
