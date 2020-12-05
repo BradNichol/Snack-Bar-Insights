@@ -13,7 +13,7 @@ public class Brand {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
-    private String Id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -22,11 +22,11 @@ public class Brand {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
