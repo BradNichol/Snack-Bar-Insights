@@ -8,8 +8,13 @@ import uk.co.bradleynichol.SnackBarInsights.entity.Brand;
 @Service
 public class BrandServiceImpl implements IBrandService {
 
-    @Autowired
+
     private IBrandDAO brandDAO;
+
+    @Autowired
+    public BrandServiceImpl(IBrandDAO brandDAO) {
+        this.brandDAO = brandDAO;
+    }
 
     @Override
     public boolean addBrand(Brand brand) {
