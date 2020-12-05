@@ -1,4 +1,4 @@
-package uk.co.bradleynichol.snackbarinsights;
+package uk.co.bradleynichol.snackbarinsights.service.Scraper;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
