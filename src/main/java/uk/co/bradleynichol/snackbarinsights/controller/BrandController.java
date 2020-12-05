@@ -12,13 +12,13 @@ import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 
 @RestController
 @RequestMapping("/api/brands")
-public class BrandsController {
+public class BrandController {
 
 
     private BrandServiceImpl brandService;
 
     @Autowired
-    public BrandsController(BrandServiceImpl brandService) {
+    public BrandController(BrandServiceImpl brandService) {
         this.brandService = brandService;
     }
 
