@@ -1,10 +1,12 @@
 package uk.co.bradleynichol.snackbarinsights.dao;
 
+import org.springframework.stereotype.Repository;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Repository
 public class ScraperResourceDAOImpl implements IScraperResourceDAO {
 
     @PersistenceContext
