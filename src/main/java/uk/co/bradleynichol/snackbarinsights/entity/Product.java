@@ -14,8 +14,9 @@ public class Product {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "brand_id", nullable = false)
-    private String brandId;
+    @ManyToOne
+    @JoinColumn(name = "brand_id", nullable = false)
+    private Brand brand;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -34,12 +35,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getBrandId() {
-        return brandId;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setBrandId(String brandId) {
-        this.brandId = brandId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public String getName() {
