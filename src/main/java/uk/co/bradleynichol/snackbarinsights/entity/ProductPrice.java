@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "price_tracker")
-public class PriceTracker {
+@Table(name = "product_price")
+public class ProductPrice {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -27,7 +27,7 @@ public class PriceTracker {
     private Float price;
 
 
-    public PriceTracker() {
+    public ProductPrice() {
     }
 
     public String getId() {
