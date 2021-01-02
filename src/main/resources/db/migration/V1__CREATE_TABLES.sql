@@ -34,7 +34,7 @@ create table nutritional_information
         REFERENCES products(id)
 );
 
-create table price_tracking
+create table price_tracker
 (
     id            varchar(50) NOT NULL PRIMARY KEY,
     product_id    varchar(50) NOT NULL,

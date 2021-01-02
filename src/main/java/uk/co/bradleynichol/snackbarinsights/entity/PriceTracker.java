@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "price_tracking")
+@Table(name = "price_tracker")
 public class PriceTracker {
 
     @Id
