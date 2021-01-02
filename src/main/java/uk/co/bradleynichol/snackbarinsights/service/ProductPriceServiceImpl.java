@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.dao.IProductPriceDAO;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 
+import java.util.Date;
+
 @Service
 public class ProductPriceServiceImpl implements IProductPriceService {
 
@@ -17,6 +19,7 @@ public class ProductPriceServiceImpl implements IProductPriceService {
 
     @Override
     public boolean addProductPrice(ProductPrice productPrice) {
+        productPrice.setDate(new Date());
         productPriceDAO.addProductPrice(productPrice);
         return true;
     }
