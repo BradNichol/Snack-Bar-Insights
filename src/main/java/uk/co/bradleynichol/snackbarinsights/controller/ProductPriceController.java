@@ -10,7 +10,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
 
 @RestController
-@RequestMapping("api/price")
+@RequestMapping("/api/price")
 public class ProductPriceController {
 
     private IProductPriceService productPriceService;
