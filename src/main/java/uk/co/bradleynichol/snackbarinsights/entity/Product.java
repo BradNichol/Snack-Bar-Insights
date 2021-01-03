@@ -27,6 +27,9 @@ public class Product {
     @Column(name = "pack_size")
     private int packSize;
 
+    public Product() {
+    }
+
     public String getId() {
         return id;
     }

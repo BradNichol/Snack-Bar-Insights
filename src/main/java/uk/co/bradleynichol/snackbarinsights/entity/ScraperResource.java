@@ -23,6 +23,11 @@ public class ScraperResource {
     @Column(name = "xpath")
     private String xPath;
 
+
+    public ScraperResource() {
+    }
+
+
     public String getId() {
         return id;
     }
