@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Scraper {
 
-    public void run(String url, String titleXpath, String priceXpath){
+    public void run(String url, String priceXpath){
         WebClient webClient = new WebClient();
         webClient.getOptions().setUseInsecureSSL(true);
         webClient.getOptions().setCssEnabled(false);
@@ -17,9 +17,6 @@ public class Scraper {
 
         try {
             HtmlPage htmlPage = webClient.getPage(url);
-            DomElement productName = htmlPage.getFirstByXPath(titleXpath);
-            System.out.println(productName.getTextContent().trim());
-
             DomElement price = htmlPage.getFirstByXPath(priceXpath);
             System.out.println(price.getTextContent().trim());
         } catch (IOException e) {
