@@ -14,8 +14,9 @@ public class ScraperResource {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "product_id", nullable = false)
-    private String productId;
+    @ManyToOne
+    @JoinColumn (name = "product_id", nullable = false)
+    private Product product;
 
     @Column(name = "url")
     private String url;
@@ -36,12 +37,12 @@ public class ScraperResource {
         this.id = id;
     }
 
-    public String getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getUrl() {

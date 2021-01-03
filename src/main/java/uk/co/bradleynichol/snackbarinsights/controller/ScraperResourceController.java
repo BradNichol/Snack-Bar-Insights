@@ -25,7 +25,7 @@ public class ScraperResourceController {
         boolean flag = scraperResourceService.addResource(scraperResource);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("api/price").buildAndExpand(scraperResource.getId()).toUri());
+        headers.setLocation(builder.path("api/scraperResource").buildAndExpand(scraperResource.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 

@@ -5,7 +5,9 @@ import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+@Transactional
 @Repository
 public class ScraperResourceDAOImpl implements IScraperResourceDAO {
 
