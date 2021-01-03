@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
+import uk.co.bradleynichol.snackbarinsights.service.scraper.Scraper;
 
 @RestController
 @RequestMapping("/api/scraperResource")
@@ -33,5 +34,12 @@ public class ScraperResourceController {
     public ResponseEntity<ScraperResource> getScraperResourceById(@PathVariable("id") String id) {
         ScraperResource scraperResource = scraperResourceService.getResourceById(id);
         return new ResponseEntity<>(scraperResource, HttpStatus.OK);
+    }
+
+    @GetMapping("/run/{id}")
+    public void runScraper(@PathVariable("id") String id) {
+        ScraperResource scraperResource = scraperResourceService.getResourceById(id);
+        Scraper scraper = new Scraper();
+        scraper.run(scraperResource.getUrl(), scraperResource.getxPath());
     }
 }
