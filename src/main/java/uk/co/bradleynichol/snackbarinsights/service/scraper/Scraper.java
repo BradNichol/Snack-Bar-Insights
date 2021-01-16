@@ -3,10 +3,11 @@ package uk.co.bradleynichol.snackbarinsights.service.scraper;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-
+@Component
 public class Scraper {
 
     public double run(String url, String priceXpath){
