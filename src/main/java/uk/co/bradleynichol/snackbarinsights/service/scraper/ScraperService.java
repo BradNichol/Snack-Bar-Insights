@@ -29,11 +29,16 @@ public class ScraperService {
         List<ScraperResource> scraperResources = scraperResourceService.getAllResources();
 
         scraperResources.forEach(resource -> {
-            Double price = scraper.run(resource.getUrl(), resource.getxPath());
-            ProductPrice productPrice = new ProductPrice();
-            productPrice.setProduct(resource.getProduct());
-            productPrice.setPrice(price);
+            Double scrapedPrice = scraper.run(resource.getUrl(), resource.getxPath());
+            ProductPrice productPrice = getProductPrice(resource, scrapedPrice);
             productPriceService.addProductPrice(productPrice);
         });
+    }
+
+    private ProductPrice getProductPrice(ScraperResource resource, Double price) {
+        ProductPrice productPrice = new ProductPrice();
+        productPrice.setProduct(resource.getProduct());
+        productPrice.setPrice(price);
+        return productPrice;
     }
 }
