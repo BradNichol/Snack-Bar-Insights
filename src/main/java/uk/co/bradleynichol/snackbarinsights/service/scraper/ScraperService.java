@@ -1,6 +1,7 @@
 package uk.co.bradleynichol.snackbarinsights.service.scraper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
@@ -24,7 +25,7 @@ public class ScraperService {
         this.scraper = scraper;
     }
 
-
+    //@Scheduled(cron = "*/20 * * * * *" ) -- requires correct cron schedule - TBC
     public void executeScraper() {
         List<ScraperResource> scraperResources = scraperResourceService.getAllResources();
 
