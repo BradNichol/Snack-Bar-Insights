@@ -34,10 +34,6 @@ public class ProductPrice {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Product getProduct() {
         return product;
     }

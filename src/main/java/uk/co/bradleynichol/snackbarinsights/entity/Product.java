@@ -34,10 +34,6 @@ public class Product {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Brand getBrand() {
         return brand;
     }
