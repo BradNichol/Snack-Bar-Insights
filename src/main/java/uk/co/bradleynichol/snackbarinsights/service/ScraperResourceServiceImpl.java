@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.dao.IScraperResourceDAO;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 
+import java.util.List;
+
 @Service
 public class ScraperResourceServiceImpl implements IScraperResourceService {
 
@@ -34,5 +36,10 @@ public class ScraperResourceServiceImpl implements IScraperResourceService {
     @Override
     public void deleteResource(String resourceId) {
         resourceDAO.deleteResource(resourceId);
+    }
+
+    @Override
+    public List<ScraperResource> getAllResources() {
+        return resourceDAO.findAllResources();
     }
 }

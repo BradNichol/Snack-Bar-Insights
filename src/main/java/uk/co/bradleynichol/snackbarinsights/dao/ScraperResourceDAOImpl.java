@@ -6,6 +6,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -35,5 +36,10 @@ public class ScraperResourceDAOImpl implements IScraperResourceDAO {
     @Override
     public void deleteResource(String resourceId) {
         entityManager.remove(getResourceById(resourceId));
+    }
+
+    @Override
+    public List<ScraperResource> findAllResources() {
+        return entityManager.createQuery("from ScraperResource").getResultList();
     }
 }
