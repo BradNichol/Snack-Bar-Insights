@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
-import uk.co.bradleynichol.snackbarinsights.service.scraper.Scraper;
+import uk.co.bradleynichol.snackbarinsights.service.scraper.ScraperService;
 
 import java.util.List;
 
@@ -16,11 +16,14 @@ import java.util.List;
 @RequestMapping("/api/scraperResource")
 public class ScraperResourceController {
 
-    private IScraperResourceService scraperResourceService;
+    private final IScraperResourceService scraperResourceService;
+    private final ScraperService scraperService;
+
 
     @Autowired
-    public ScraperResourceController(IScraperResourceService scraperResourceService) {
+    public ScraperResourceController(IScraperResourceService scraperResourceService, ScraperService scraperService) {
         this.scraperResourceService = scraperResourceService;
+        this.scraperService = scraperService;
     }
 
     @PostMapping("/add")
@@ -44,10 +47,8 @@ public class ScraperResourceController {
         return new ResponseEntity<>(scraperResources, HttpStatus.OK);
     }
 
-    @GetMapping("/run/{id}")
-    public void runScraper(@PathVariable("id") String id) {
-        ScraperResource scraperResource = scraperResourceService.getResourceById(id);
-        Scraper scraper = new Scraper();
-        scraper.run(scraperResource.getUrl(), scraperResource.getxPath());
+    @GetMapping("/run")
+    public void runScraper() {
+        scraperService.executeScraper();
     }
 }
