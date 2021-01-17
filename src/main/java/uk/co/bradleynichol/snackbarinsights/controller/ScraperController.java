@@ -21,7 +21,7 @@ public class ScraperController {
 
     @GetMapping("/run")
     public ResponseEntity<String> runScraper() {
-        scraperService.executeScraper();
+        new Thread(scraperService::executeScraper).start();
         return new ResponseEntity<>("Scraper executed", HttpStatus.ACCEPTED);
     }
 }
