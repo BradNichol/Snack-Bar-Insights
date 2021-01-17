@@ -32,8 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 
-### Scraper URLs ###
+### Test Data ###
 scraperURLs.txt
+testData.sql
 
 # environment variables
 .env
