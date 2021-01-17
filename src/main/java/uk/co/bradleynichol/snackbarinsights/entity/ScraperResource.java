@@ -18,8 +18,11 @@ public class ScraperResource {
     @JoinColumn (name = "product_id", nullable = false)
     private Product product;
 
-    @Column(name = "url")
-    private String url;
+    @Column(name = "domain")
+    private String domain;
+
+    @Column(name = "path")
+    private String path;
 
     @Column(name = "xpath")
     private String xPath;
@@ -41,12 +44,20 @@ public class ScraperResource {
         this.product = product;
     }
 
-    public String getUrl() {
-        return url;
+    public String getDomain() {
+        return domain;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getxPath() {

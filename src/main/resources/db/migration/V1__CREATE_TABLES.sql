@@ -49,7 +49,8 @@ create table scraper_resources
 (
     id          varchar(50) NOT NULL PRIMARY KEY,
     product_id  varchar(50) NOT NULL,
-    url         text NOT NULL,
+    domain      text NOT NULL,
+    path         text NOT NULL,
     xpath       text NOT NULL,
     CONSTRAINT fk_product_id
         FOREIGN KEY(product_id)

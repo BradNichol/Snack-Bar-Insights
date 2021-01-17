@@ -1,7 +1,6 @@
 package uk.co.bradleynichol.snackbarinsights.service.scraper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
@@ -30,7 +29,7 @@ public class ScraperService {
         List<ScraperResource> scraperResources = scraperResourceService.getAllResources();
 
         scraperResources.forEach(resource -> {
-            Double scrapedPrice = scraper.run(resource.getUrl(), resource.getxPath());
+            Double scrapedPrice = scraper.run(resource.getPath(), resource.getxPath());
             ProductPrice productPrice = getProductPrice(resource, scrapedPrice);
             productPriceService.addProductPrice(productPrice);
         });

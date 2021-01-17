@@ -28,7 +28,7 @@ public class ScraperResourceDAOImpl implements IScraperResourceDAO {
     @Override
     public void updateResource(ScraperResource resource) {
         ScraperResource scraperResource = getResourceById(resource.getId());
-        scraperResource.setUrl(resource.getUrl());
+        scraperResource.setPath(resource.getPath());
         scraperResource.setxPath(resource.getxPath());
         entityManager.flush();
     }
