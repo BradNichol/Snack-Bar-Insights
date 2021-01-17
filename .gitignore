@@ -34,7 +34,7 @@ build/
 
 ### Test Data ###
 scraperURLs.txt
-testData.sql
+src/main/resources/db/migration/afterMigrate.sql
 
 # environment variables
 .env
