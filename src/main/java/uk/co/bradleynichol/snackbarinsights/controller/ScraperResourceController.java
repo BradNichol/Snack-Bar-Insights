@@ -17,13 +17,11 @@ import java.util.List;
 public class ScraperResourceController {
 
     private final IScraperResourceService scraperResourceService;
-    private final ScraperService scraperService;
 
 
     @Autowired
     public ScraperResourceController(IScraperResourceService scraperResourceService, ScraperService scraperService) {
         this.scraperResourceService = scraperResourceService;
-        this.scraperService = scraperService;
     }
 
     @PostMapping("/add")
@@ -47,8 +45,4 @@ public class ScraperResourceController {
         return new ResponseEntity<>(scraperResources, HttpStatus.OK);
     }
 
-    @GetMapping("/run")
-    public void runScraper() {
-        scraperService.executeScraper();
-    }
 }
