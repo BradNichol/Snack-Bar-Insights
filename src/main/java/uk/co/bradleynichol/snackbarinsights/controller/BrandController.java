@@ -11,6 +11,8 @@ import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/brands")
 public class BrandController {
@@ -36,6 +38,12 @@ public class BrandController {
     public ResponseEntity<BrandDTO> getBrandById(@PathVariable("id") String id) {
         BrandDTO brandDTO = brandService.getBrandById(id);
         return new ResponseEntity<>(brandDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<BrandDTO>> getAllBrands() {
+        List<BrandDTO> brandDTOList = brandService.getAllBrands();
+        return new ResponseEntity<>(brandDTOList, HttpStatus.OK);
     }
 
     @PutMapping("/update")

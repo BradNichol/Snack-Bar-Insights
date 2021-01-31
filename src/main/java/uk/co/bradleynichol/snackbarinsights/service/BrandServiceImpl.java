@@ -8,6 +8,9 @@ import uk.co.bradleynichol.snackbarinsights.dao.IBrandDAO;
 import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BrandServiceImpl implements IBrandService {
 
@@ -43,6 +46,14 @@ public class BrandServiceImpl implements IBrandService {
     @Override
     public void deleteBrand(String brandId) {
         brandDAO.deleteBrand(brandId);
+    }
+
+    @Override
+    public List<BrandDTO> getAllBrands() {
+        return brandDAO.findAllBrands()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
 
