@@ -29,8 +29,9 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public Brand getBrandById(String brandId) {
-        return brandDAO.getBrandById(brandId);
+    public BrandDTO getBrandById(String brandId) {
+        return convertToBrandDTO(brandDAO.getBrandById(brandId));
+
     }
 
     @Override
@@ -47,7 +48,7 @@ public class BrandServiceImpl implements IBrandService {
     private BrandDTO convertToBrandDTO(Brand brand) {
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
-        BrandDTO brandDTO = modelMapper.map(brand, BrandDTO.class);
-        return brandDTO;
+        return modelMapper.map(brand, BrandDTO.class);
+
     }
 }

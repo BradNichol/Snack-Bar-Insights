@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 
@@ -32,9 +33,9 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Brand> getBrandById(@PathVariable("id") String id) {
-        Brand brand = brandService.getBrandById(id);
-        return new ResponseEntity<>(brand, HttpStatus.OK);
+    public ResponseEntity<BrandDTO> getBrandById(@PathVariable("id") String id) {
+        BrandDTO brandDTO = brandService.getBrandById(id);
+        return new ResponseEntity<>(brandDTO, HttpStatus.OK);
     }
 
     @PutMapping("/update")
