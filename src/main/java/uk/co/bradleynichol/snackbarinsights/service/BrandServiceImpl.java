@@ -36,8 +36,8 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public void updateBrand(Brand brand) {
-        brandDAO.updateBrand(brand);
+    public void updateBrand(BrandDTO brandDTO) {
+        brandDAO.updateBrand(convertToEntity(brandDTO));
     }
 
     @Override

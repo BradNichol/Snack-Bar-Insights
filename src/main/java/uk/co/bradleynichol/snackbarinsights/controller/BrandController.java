@@ -39,9 +39,9 @@ public class BrandController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Brand> updateBrand(@RequestBody Brand brand) {
-        brandService.updateBrand(brand);
-        return new ResponseEntity<>(brand, HttpStatus.OK);
+    public ResponseEntity<BrandDTO> updateBrand(@RequestBody BrandDTO brandDTO) {
+        brandService.updateBrand(brandDTO);
+        return new ResponseEntity<>(brandDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
