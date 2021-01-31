@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
-import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
-
 import java.util.List;
 
 @RestController
