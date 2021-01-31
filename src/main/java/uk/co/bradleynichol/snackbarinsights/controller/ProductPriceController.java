@@ -13,7 +13,7 @@ import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
 @RequestMapping("/api/price")
 public class ProductPriceController {
 
-    private IProductPriceService productPriceService;
+    private final IProductPriceService productPriceService;
 
     @Autowired
     public ProductPriceController(IProductPriceService productPriceService) {

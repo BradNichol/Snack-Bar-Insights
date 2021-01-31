@@ -16,7 +16,7 @@ import java.util.List;
 public class BrandController {
 
 
-    private BrandServiceImpl brandService;
+    private final BrandServiceImpl brandService;
 
     @Autowired
     public BrandController(BrandServiceImpl brandService) {

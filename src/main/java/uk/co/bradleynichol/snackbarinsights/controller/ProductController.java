@@ -13,7 +13,7 @@ import uk.co.bradleynichol.snackbarinsights.service.ProductServiceImpl;
 @RequestMapping("/api/product")
 public class ProductController {
 
-    private ProductServiceImpl productService;
+    private final ProductServiceImpl productService;
 
     @Autowired
     public ProductController(ProductServiceImpl productService) {
