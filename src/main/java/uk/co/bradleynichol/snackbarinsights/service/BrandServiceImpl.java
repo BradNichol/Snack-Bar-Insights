@@ -12,7 +12,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 public class BrandServiceImpl implements IBrandService {
 
 
-    private IBrandDAO brandDAO;
+    private final IBrandDAO brandDAO;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -23,14 +23,15 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public boolean addBrand(Brand brand) {
+    public boolean addBrand(BrandDTO brandDTO) {
+        Brand brand = convertToEntity(brandDTO);
         brandDAO.addBrand(brand);
         return true;
     }
 
     @Override
     public BrandDTO getBrandById(String brandId) {
-        return convertToBrandDTO(brandDAO.getBrandById(brandId));
+        return convertToDTO(brandDAO.getBrandById(brandId));
 
     }
 
@@ -45,10 +46,17 @@ public class BrandServiceImpl implements IBrandService {
     }
 
 
-    private BrandDTO convertToBrandDTO(Brand brand) {
+    private BrandDTO convertToDTO(Brand brand) {
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
         return modelMapper.map(brand, BrandDTO.class);
+
+    }
+
+    private Brand convertToEntity(BrandDTO brandDTO) {
+        modelMapper.getConfiguration()
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
+        return modelMapper.map(brandDTO, Brand.class);
 
     }
 }

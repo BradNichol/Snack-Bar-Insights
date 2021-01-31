@@ -5,7 +5,7 @@ import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 public interface IBrandService {
-    boolean addBrand(Brand brand);
+    boolean addBrand(BrandDTO brandDTO);
     BrandDTO getBrandById(String brandId);
     void updateBrand(Brand brand);
     void deleteBrand(String brandId);

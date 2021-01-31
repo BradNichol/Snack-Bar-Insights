@@ -24,11 +24,11 @@ public class BrandController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addBrand(@RequestBody Brand brand, UriComponentsBuilder builder) {
-        boolean flag = brandService.addBrand(brand);
+    public ResponseEntity<Void> addBrand(@RequestBody BrandDTO brandDTO, UriComponentsBuilder builder) {
+        boolean flag = brandService.addBrand(brandDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/api/brands").buildAndExpand(brand.getId()).toUri());
+        headers.setLocation(builder.path("/api/brands").buildAndExpand(brandDTO.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
