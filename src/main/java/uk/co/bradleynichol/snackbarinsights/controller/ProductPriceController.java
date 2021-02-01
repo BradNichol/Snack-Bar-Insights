@@ -1,5 +1,6 @@
 package uk.co.bradleynichol.snackbarinsights.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
 
+@Hidden
 @RestController
 @RequestMapping("/api/price")
 public class ProductPriceController {

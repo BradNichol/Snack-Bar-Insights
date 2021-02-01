@@ -1,6 +1,7 @@
 package uk.co.bradleynichol.snackbarinsights.controller;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 import java.util.List;
 
 @RestController
+@Tag(name = "brand", description = "API endpoint for Brands")
 @RequestMapping("/api/brands")
 public class BrandController {
 
