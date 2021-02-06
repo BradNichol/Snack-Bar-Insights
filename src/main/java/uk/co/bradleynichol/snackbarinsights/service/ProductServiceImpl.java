@@ -43,6 +43,13 @@ public class ProductServiceImpl implements IProductService {
     }
 
     private ProductDTO convertToDTO(Product product) {
+
+        // gets the Brand name from Product entity impl and
+        // sets it against the brand field in the ProductDTO
+        modelMapper.typeMap(Product.class, ProductDTO.class).addMappings(mapper -> {
+            mapper.map(src -> src.getBrand().getName(),
+                    ProductDTO::setBrand);
+        });
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
         return modelMapper.map(product, ProductDTO.class);

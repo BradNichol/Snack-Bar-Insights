@@ -6,6 +6,7 @@ public class ProductDTO {
     private String name;
     private String type;
     private int packSize;
+    private String brand;
 
 
     public String getId() {
@@ -38,5 +39,13 @@ public class ProductDTO {
 
     public void setPackSize(int packSize) {
         this.packSize = packSize;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }
