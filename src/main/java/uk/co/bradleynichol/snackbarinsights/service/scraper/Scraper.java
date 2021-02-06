@@ -3,12 +3,14 @@ package uk.co.bradleynichol.snackbarinsights.service.scraper;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class Scraper {
+
+    private static final Logger logger = LoggerFactory.getLogger(Scraper.class);
 
     public double run(String url, String priceXpath){
         WebClient webClient = new WebClient();
@@ -24,7 +26,8 @@ public class Scraper {
             price = Double.parseDouble(priceElement.getTextContent()
                     .replace('£', ' ')
                     .trim());
-        } catch (IOException e) {
+        } catch (Exception e) {
+            logger.error("Error with URL: {}, price XPath: {}", url, priceXpath);
             e.printStackTrace();
         } finally {
             webClient.close();
