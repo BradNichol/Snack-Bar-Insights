@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
 import uk.co.bradleynichol.snackbarinsights.service.scraper.ScraperService;
@@ -40,8 +41,8 @@ public class ScraperResourceController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<ScraperResource>> getAllScraperResources() {
-        List<ScraperResource> scraperResources = scraperResourceService.getAllResources();
+    public ResponseEntity<List<ScraperResourceDTO>> getAllScraperResources() {
+        List<ScraperResourceDTO> scraperResources = scraperResourceService.getAllResources();
         return new ResponseEntity<>(scraperResources, HttpStatus.OK);
     }
 

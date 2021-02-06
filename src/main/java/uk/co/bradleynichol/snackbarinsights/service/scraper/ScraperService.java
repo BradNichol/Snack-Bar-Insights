@@ -1,9 +1,10 @@
 package uk.co.bradleynichol.snackbarinsights.service.scraper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
-import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
 import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
 
@@ -24,9 +25,9 @@ public class ScraperService {
         this.scraper = scraper;
     }
 
-    //@Scheduled(cron = "*/20 * * * * *" ) -- requires correct cron schedule - TBC
+    // @Scheduled(cron = "*/20 * * * * *" ) //-- requires correct cron schedule - TBC
     public void executeScraper() {
-        List<ScraperResource> scraperResources = scraperResourceService.getAllResources();
+        List<ScraperResourceDTO> scraperResources = scraperResourceService.getAllResources();
 
         scraperResources.forEach(resource -> {
             Double scrapedPrice = scraper.run(resource.getPath(), resource.getxPath());
@@ -35,7 +36,7 @@ public class ScraperService {
         });
     }
 
-    private ProductPrice getProductPrice(ScraperResource resource, Double price) {
+    private ProductPrice getProductPrice(ScraperResourceDTO resource, Double price) {
         ProductPrice productPrice = new ProductPrice();
         productPrice.setProduct(resource.getProduct());
         productPrice.setPrice(price);

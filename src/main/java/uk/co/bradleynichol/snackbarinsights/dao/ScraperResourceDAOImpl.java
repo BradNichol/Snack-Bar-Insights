@@ -40,6 +40,6 @@ public class ScraperResourceDAOImpl implements IScraperResourceDAO {
 
     @Override
     public List<ScraperResource> findAllResources() {
-        return entityManager.createQuery("from ScraperResource").getResultList();
+        return entityManager.createQuery("from ScraperResource", ScraperResource.class).getResultList();
     }
 }

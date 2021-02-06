@@ -6,14 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import uk.co.bradleynichol.snackbarinsights.entity.Product;
+import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
 import uk.co.bradleynichol.snackbarinsights.service.ProductServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
 
-    private ProductServiceImpl productService;
+    private final ProductServiceImpl productService;
 
     @Autowired
     public ProductController(ProductServiceImpl productService) {
@@ -21,17 +23,24 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addProduct(@RequestBody Product product, UriComponentsBuilder builder) {
-        boolean flag = productService.addProduct(product);
+    public ResponseEntity<Void> addProduct(@RequestBody ProductDTO productDTO, UriComponentsBuilder builder) {
+        boolean flag = productService.addProduct(productDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("api/product").buildAndExpand(product.getId()).toUri());
+        headers.setLocation(builder.path("api/product").buildAndExpand(productDTO.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") String id) {
-        Product product = productService.getProductById(id);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable("id") String id) {
+        ProductDTO productDTO = productService.getProductById(id);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> productDTOList = productService.getAllProducts();
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
 }

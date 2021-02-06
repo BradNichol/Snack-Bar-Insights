@@ -8,8 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import uk.co.bradleynichol.snackbarinsights.entity.Brand;
+import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
+import java.util.List;
 
 @RestController
 @Tag(name = "brand", description = "API endpoint for Brands")
@@ -17,7 +18,7 @@ import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
 public class BrandController {
 
 
-    private BrandServiceImpl brandService;
+    private final BrandServiceImpl brandService;
 
     @Autowired
     public BrandController(BrandServiceImpl brandService) {
@@ -25,24 +26,30 @@ public class BrandController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addBrand(@RequestBody Brand brand, UriComponentsBuilder builder) {
-        boolean flag = brandService.addBrand(brand);
+    public ResponseEntity<Void> addBrand(@RequestBody BrandDTO brandDTO, UriComponentsBuilder builder) {
+        boolean flag = brandService.addBrand(brandDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/api/brands").buildAndExpand(brand.getId()).toUri());
+        headers.setLocation(builder.path("/api/brands").buildAndExpand(brandDTO.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Brand> getBrandById(@PathVariable("id") String id) {
-        Brand brand = brandService.getBrandById(id);
-        return new ResponseEntity<>(brand, HttpStatus.OK);
+    public ResponseEntity<BrandDTO> getBrandById(@PathVariable("id") String id) {
+        BrandDTO brandDTO = brandService.getBrandById(id);
+        return new ResponseEntity<>(brandDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<BrandDTO>> getAllBrands() {
+        List<BrandDTO> brandDTOList = brandService.getAllBrands();
+        return new ResponseEntity<>(brandDTOList, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Brand> updateBrand(@RequestBody Brand brand) {
-        brandService.updateBrand(brand);
-        return new ResponseEntity<>(brand, HttpStatus.OK);
+    public ResponseEntity<BrandDTO> updateBrand(@RequestBody BrandDTO brandDTO) {
+        brandService.updateBrand(brandDTO);
+        return new ResponseEntity<>(brandDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

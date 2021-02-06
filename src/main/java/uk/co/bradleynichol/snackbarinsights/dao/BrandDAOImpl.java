@@ -6,6 +6,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -34,5 +35,10 @@ public class BrandDAOImpl implements IBrandDAO {
     @Override
     public void deleteBrand(String brandId) {
         entityManager.remove(getBrandById(brandId));
+    }
+
+    @Override
+    public List<Brand> findAllBrands() {
+        return entityManager.createQuery("from Brand", Brand.class).getResultList();
     }
 }
