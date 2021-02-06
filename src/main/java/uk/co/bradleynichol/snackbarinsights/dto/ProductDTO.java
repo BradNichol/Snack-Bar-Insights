@@ -6,7 +6,7 @@ public class ProductDTO {
     private String name;
     private String type;
     private int packSize;
-    private String brand;
+    private BrandDTO brand;
 
 
     public String getId() {
@@ -41,11 +41,11 @@ public class ProductDTO {
         this.packSize = packSize;
     }
 
-    public String getBrand() {
+    public BrandDTO getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(BrandDTO brand) {
         this.brand = brand;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
-import uk.co.bradleynichol.snackbarinsights.entity.Product;
 import uk.co.bradleynichol.snackbarinsights.service.ProductServiceImpl;
 
 @RestController
@@ -22,11 +21,11 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> addProduct(@RequestBody Product product, UriComponentsBuilder builder) {
-        boolean flag = productService.addProduct(product);
+    public ResponseEntity<Void> addProduct(@RequestBody ProductDTO productDTO, UriComponentsBuilder builder) {
+        boolean flag = productService.addProduct(productDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("api/product").buildAndExpand(product.getId()).toUri());
+        headers.setLocation(builder.path("api/product").buildAndExpand(productDTO.getId()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
