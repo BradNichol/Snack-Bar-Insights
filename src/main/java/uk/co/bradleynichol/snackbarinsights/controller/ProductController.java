@@ -9,6 +9,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
 import uk.co.bradleynichol.snackbarinsights.service.ProductServiceImpl;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/product")
 public class ProductController {
@@ -34,4 +36,11 @@ public class ProductController {
         ProductDTO productDTO = productService.getProductById(id);
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> productDTOList = productService.getAllProducts();
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
 }

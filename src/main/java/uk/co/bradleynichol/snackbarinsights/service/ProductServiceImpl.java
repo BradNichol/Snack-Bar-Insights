@@ -8,6 +8,9 @@ import uk.co.bradleynichol.snackbarinsights.dao.IProductDAO;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Product;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductServiceImpl implements IProductService {
 
@@ -41,6 +44,14 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void deleteProduct(String productId) {
         productDAO.deleteProduct(productId);
+    }
+
+    @Override
+    public List<ProductDTO> getAllProducts() {
+        return productDAO.findAllProducts()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     private ProductDTO convertToDTO(Product product) {

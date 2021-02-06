@@ -6,6 +6,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Repository
@@ -36,5 +37,10 @@ public class ProductDAOImpl implements IProductDAO {
     @Override
     public void deleteProduct(String productId) {
         entityManager.remove(getProductById(productId));
+    }
+
+    @Override
+    public List<Product> findAllProducts() {
+        return entityManager.createQuery("from Product", Product.class).getResultList();
     }
 }
