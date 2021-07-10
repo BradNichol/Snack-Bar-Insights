@@ -4,8 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.IScraperResourceDAO;
-import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
+import uk.co.bradleynichol.snackbarinsights.dao.ScraperResourceDAO;
 import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 
@@ -13,15 +12,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ScraperResourceServiceImpl implements IScraperResourceService {
+public class ScraperResourceServiceImpl implements ScraperResourceService {
 
-    private IScraperResourceDAO resourceDAO;
+    private ScraperResourceDAO resourceDAO;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    public ScraperResourceServiceImpl(IScraperResourceDAO resourceDAO) {
+    public ScraperResourceServiceImpl(ScraperResourceDAO resourceDAO) {
         this.resourceDAO = resourceDAO;
     }
 

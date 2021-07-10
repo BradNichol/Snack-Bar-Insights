@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ProductDAOImpl implements IProductDAO {
+public class ProductDAOImpl implements ProductDAO {
 
     @PersistenceContext
     private EntityManager entityManager;

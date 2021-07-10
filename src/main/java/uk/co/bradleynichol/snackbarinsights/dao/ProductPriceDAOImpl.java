@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Repository
-public class ProductPriceDAOImpl implements IProductPriceDAO {
+public class ProductPriceDAOImpl implements ProductPriceDAO {
 
     @PersistenceContext
     private EntityManager entityManager;

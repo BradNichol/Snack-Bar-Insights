@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.IBrandDAO;
+import uk.co.bradleynichol.snackbarinsights.dao.BrandDAO;
 import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
@@ -12,16 +12,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BrandServiceImpl implements IBrandService {
+public class BrandServiceImpl implements BrandService {
 
 
-    private final IBrandDAO brandDAO;
+    private final BrandDAO brandDAO;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    public BrandServiceImpl(IBrandDAO brandDAO) {
+    public BrandServiceImpl(BrandDAO brandDAO) {
         this.brandDAO = brandDAO;
     }
 

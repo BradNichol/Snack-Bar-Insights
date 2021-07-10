@@ -5,7 +5,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Product;
 
 import java.util.List;
 
-public interface IProductDAO {
+public interface ProductDAO {
     void addProduct(Product product);
     Product getProductById(String productId);
     void updateProduct(Product product);

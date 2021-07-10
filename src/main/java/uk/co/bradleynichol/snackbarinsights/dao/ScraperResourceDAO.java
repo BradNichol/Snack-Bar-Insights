@@ -4,7 +4,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
 
 import java.util.List;
 
-public interface IScraperResourceDAO {
+public interface ScraperResourceDAO {
     void addResource(ScraperResource resource);
     ScraperResource getResourceById(String resourceId);
     void updateResource(ScraperResource resource);

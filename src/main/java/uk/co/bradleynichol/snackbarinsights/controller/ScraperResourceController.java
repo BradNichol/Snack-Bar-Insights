@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ScraperResource;
-import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
+import uk.co.bradleynichol.snackbarinsights.service.ScraperResourceService;
 import uk.co.bradleynichol.snackbarinsights.service.scraper.ScraperService;
 
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
 @RequestMapping("/api/scraperResource")
 public class ScraperResourceController {
 
-    private final IScraperResourceService scraperResourceService;
+    private final ScraperResourceService scraperResourceService;
 
 
     @Autowired
-    public ScraperResourceController(IScraperResourceService scraperResourceService, ScraperService scraperService) {
+    public ScraperResourceController(ScraperResourceService scraperResourceService, ScraperService scraperService) {
         this.scraperResourceService = scraperResourceService;
     }
 

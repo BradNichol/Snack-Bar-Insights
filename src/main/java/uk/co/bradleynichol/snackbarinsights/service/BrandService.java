@@ -5,7 +5,7 @@ import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 
 import java.util.List;
 
-public interface IBrandService {
+public interface BrandService {
     boolean addBrand(BrandDTO brandDTO);
     BrandDTO getBrandById(String brandId);
     void updateBrand(BrandDTO brandDTO);

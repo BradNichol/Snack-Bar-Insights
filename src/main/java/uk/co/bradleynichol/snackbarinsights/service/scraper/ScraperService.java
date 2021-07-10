@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
-import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
-import uk.co.bradleynichol.snackbarinsights.service.IScraperResourceService;
+import uk.co.bradleynichol.snackbarinsights.service.ProductPriceService;
+import uk.co.bradleynichol.snackbarinsights.service.ScraperResourceService;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,13 +17,13 @@ public class ScraperService {
 
     private static final Logger logger = LoggerFactory.getLogger(ScraperService.class);
 
-    private final IProductPriceService productPriceService;
-    private final IScraperResourceService scraperResourceService;
+    private final ProductPriceService productPriceService;
+    private final ScraperResourceService scraperResourceService;
     private final Scraper scraper;
 
 
     @Autowired
-    public ScraperService(IProductPriceService productPriceService, IScraperResourceService scraperResourceService, Scraper scraper) {
+    public ScraperService(ProductPriceService productPriceService, ScraperResourceService scraperResourceService, Scraper scraper) {
         this.productPriceService = productPriceService;
         this.scraperResourceService = scraperResourceService;
         this.scraper = scraper;

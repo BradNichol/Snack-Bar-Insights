@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ScraperResourceDAOImpl implements IScraperResourceDAO {
+public class ScraperResourceDAOImpl implements ScraperResourceDAO {
 
     @PersistenceContext
     EntityManager entityManager;

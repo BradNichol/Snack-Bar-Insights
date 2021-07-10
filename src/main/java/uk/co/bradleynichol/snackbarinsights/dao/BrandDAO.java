@@ -4,7 +4,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
 import java.util.List;
 
-public interface IBrandDAO {
+public interface BrandDAO {
     void addBrand(Brand brand);
     Brand getBrandById(String brandId);
     void updateBrand(Brand brand);

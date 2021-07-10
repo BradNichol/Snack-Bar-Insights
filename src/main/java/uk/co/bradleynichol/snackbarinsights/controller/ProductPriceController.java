@@ -8,17 +8,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
-import uk.co.bradleynichol.snackbarinsights.service.IProductPriceService;
+import uk.co.bradleynichol.snackbarinsights.service.ProductPriceService;
 
 @Hidden
 @RestController
 @RequestMapping("/api/price")
 public class ProductPriceController {
 
-    private final IProductPriceService productPriceService;
+    private final ProductPriceService productPriceService;
 
     @Autowired
-    public ProductPriceController(IProductPriceService productPriceService) {
+    public ProductPriceController(ProductPriceService productPriceService) {
         this.productPriceService = productPriceService;
     }
 

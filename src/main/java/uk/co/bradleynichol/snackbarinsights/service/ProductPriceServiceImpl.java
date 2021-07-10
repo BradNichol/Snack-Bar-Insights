@@ -2,18 +2,18 @@ package uk.co.bradleynichol.snackbarinsights.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.IProductPriceDAO;
+import uk.co.bradleynichol.snackbarinsights.dao.ProductPriceDAO;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
 
 import java.util.Date;
 
 @Service
-public class ProductPriceServiceImpl implements IProductPriceService {
+public class ProductPriceServiceImpl implements ProductPriceService {
 
-    private final IProductPriceDAO productPriceDAO;
+    private final ProductPriceDAO productPriceDAO;
 
     @Autowired
-    public ProductPriceServiceImpl(IProductPriceDAO productPriceDAO) {
+    public ProductPriceServiceImpl(ProductPriceDAO productPriceDAO) {
         this.productPriceDAO = productPriceDAO;
     }
 

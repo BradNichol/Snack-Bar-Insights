@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.IProductDAO;
+import uk.co.bradleynichol.snackbarinsights.dao.ProductDAO;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Product;
 
@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductServiceImpl implements IProductService {
+public class ProductServiceImpl implements ProductService {
 
-    private final IProductDAO productDAO;
+    private final ProductDAO productDAO;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    public ProductServiceImpl(IProductDAO productDAO) {
+    public ProductServiceImpl(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
 

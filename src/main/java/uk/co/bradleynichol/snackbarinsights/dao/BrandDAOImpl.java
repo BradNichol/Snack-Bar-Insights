@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class BrandDAOImpl implements IBrandDAO {
+public class BrandDAOImpl implements BrandDAO {
 
     @PersistenceContext
     private EntityManager entityManager;

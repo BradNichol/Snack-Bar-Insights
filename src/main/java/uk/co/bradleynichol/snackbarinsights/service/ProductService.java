@@ -5,7 +5,7 @@ import uk.co.bradleynichol.snackbarinsights.entity.Product;
 
 import java.util.List;
 
-public interface IProductService {
+public interface ProductService {
     boolean addProduct(ProductDTO productDTO);
     ProductDTO getProductById(String productId);
     void updateProduct(Product product);
