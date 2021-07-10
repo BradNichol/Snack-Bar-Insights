@@ -2,6 +2,7 @@ package uk.co.bradleynichol.snackbarinsights.service.scraper;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
+import com.gargoylesoftware.htmlunit.html.DomText;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +23,9 @@ public class Scraper {
 
         try {
             HtmlPage htmlPage = webClient.getPage(url);
-            DomElement priceElement = htmlPage.getFirstByXPath(priceXpath);
+            DomText priceElement = htmlPage.getFirstByXPath(priceXpath);
             price = Double.parseDouble(priceElement.getTextContent()
-                    .replace('£', ' ')
+                    .replaceAll("[£pP]", "")
                     .trim());
         } catch (Exception e) {
             logger.error("Error with URL: {}, price XPath: {}", url, priceXpath);
