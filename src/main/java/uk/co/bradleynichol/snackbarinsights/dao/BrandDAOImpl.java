@@ -13,7 +13,11 @@ import java.util.List;
 public class BrandDAOImpl implements BrandDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    public BrandDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public void addBrand(Brand brand) {

@@ -13,7 +13,11 @@ import java.util.List;
 public class ProductDAOImpl implements ProductDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    public ProductDAOImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public void addProduct(Product product) {
