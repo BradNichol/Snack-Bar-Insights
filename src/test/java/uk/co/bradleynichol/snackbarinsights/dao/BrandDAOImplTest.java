@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 class BrandDAOImplTest {
 
     private Brand brand;
-    private BrandDAO systemUnderTest;
+    private BrandDAOImpl systemUnderTest;
 
     @Mock
     private EntityManager entityManager;
@@ -36,7 +36,7 @@ class BrandDAOImplTest {
         brand.setName("Test");
         when(entityManager.find(Brand.class, "123")).thenReturn(brand);
 
-        Brand getBrand = systemUnderTest.getBrandById("123");
+        Brand getBrand = systemUnderTest.findById("123");
 
         assertThat(getBrand).isEqualTo(brand);
         assertThat(getBrand.getName()).isEqualTo("Test");
@@ -47,7 +47,7 @@ class BrandDAOImplTest {
     void getBrandById_GivenNonExistentId_returnsNull() {
         when(entityManager.find(any(), any())).thenReturn(null);
 
-        Brand getBrand = systemUnderTest.getBrandById("NoRecord");
+        Brand getBrand = systemUnderTest.findById("NoRecord");
 
         assertThat(getBrand).isNull();
     }

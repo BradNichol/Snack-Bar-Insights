@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class BrandDAOImpl implements BrandDAO {
+public class BrandDAOImpl implements DAO<Brand> {
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -20,29 +20,29 @@ public class BrandDAOImpl implements BrandDAO {
     }
 
     @Override
-    public void addBrand(Brand brand) {
+    public void create(Brand brand) {
         entityManager.persist(brand);
     }
 
     @Override
-    public Brand getBrandById(String brandId) {
+    public Brand findById(String brandId) {
         return entityManager.find(Brand.class, brandId);
     }
 
     @Override
-    public void updateBrand(Brand brand) {
-        Brand getBrand = getBrandById(brand.getId());
+    public void update(Brand brand) {
+        Brand getBrand = findById(brand.getId());
         getBrand.setName(brand.getName());
         entityManager.flush();
     }
 
     @Override
-    public void deleteBrand(String brandId) {
-        entityManager.remove(getBrandById(brandId));
+    public void delete(String brandId) {
+        entityManager.remove(findById(brandId));
     }
 
     @Override
-    public List<Brand> findAllBrands() {
+    public List<Brand> findAll() {
         return entityManager.createQuery("from Brand", Brand.class).getResultList();
     }
 }

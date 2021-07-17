@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.BrandDAO;
+import uk.co.bradleynichol.snackbarinsights.dao.DAO;
 import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Brand;
 
@@ -15,42 +15,42 @@ import java.util.stream.Collectors;
 public class BrandServiceImpl implements BrandService {
 
 
-    private final BrandDAO brandDAO;
+    private final DAO<Brand> brandDAO;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    public BrandServiceImpl(BrandDAO brandDAO) {
+    public BrandServiceImpl(DAO<Brand> brandDAO) {
         this.brandDAO = brandDAO;
     }
 
     @Override
     public boolean addBrand(BrandDTO brandDTO) {
         Brand brand = convertToEntity(brandDTO);
-        brandDAO.addBrand(brand);
+        brandDAO.create(brand);
         return true;
     }
 
     @Override
     public BrandDTO getBrandById(String brandId) {
-        return convertToDTO(brandDAO.getBrandById(brandId));
+        return convertToDTO(brandDAO.findById(brandId));
 
     }
 
     @Override
     public void updateBrand(BrandDTO brandDTO) {
-        brandDAO.updateBrand(convertToEntity(brandDTO));
+        brandDAO.update(convertToEntity(brandDTO));
     }
 
     @Override
     public void deleteBrand(String brandId) {
-        brandDAO.deleteBrand(brandId);
+        brandDAO.delete(brandId);
     }
 
     @Override
     public List<BrandDTO> getAllBrands() {
-        return brandDAO.findAllBrands()
+        return brandDAO.findAll()
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());

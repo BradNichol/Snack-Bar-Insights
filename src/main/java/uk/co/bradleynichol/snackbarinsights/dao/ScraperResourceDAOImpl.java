@@ -10,36 +10,36 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ScraperResourceDAOImpl implements ScraperResourceDAO {
+public class ScraperResourceDAOImpl implements DAO<ScraperResource> {
 
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
-    public void addResource(ScraperResource resource) {
+    public void create(ScraperResource resource) {
         entityManager.persist(resource);
     }
 
     @Override
-    public ScraperResource getResourceById(String resourceId) {
+    public ScraperResource findById(String resourceId) {
         return entityManager.find(ScraperResource.class, resourceId);
     }
 
     @Override
-    public void updateResource(ScraperResource resource) {
-        ScraperResource scraperResource = getResourceById(resource.getId());
+    public void update(ScraperResource resource) {
+        ScraperResource scraperResource = findById(resource.getId());
         scraperResource.setPath(resource.getPath());
         scraperResource.setxPath(resource.getxPath());
         entityManager.flush();
     }
 
     @Override
-    public void deleteResource(String resourceId) {
-        entityManager.remove(getResourceById(resourceId));
+    public void delete(String resourceId) {
+        entityManager.remove(findById(resourceId));
     }
 
     @Override
-    public List<ScraperResource> findAllResources() {
+    public List<ScraperResource> findAll() {
         return entityManager.createQuery("from ScraperResource", ScraperResource.class).getResultList();
     }
 }

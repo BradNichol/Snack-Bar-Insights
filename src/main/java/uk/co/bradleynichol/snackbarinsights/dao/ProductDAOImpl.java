@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ProductDAOImpl implements ProductDAO {
+public class ProductDAOImpl implements DAO<Product> {
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -20,18 +20,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void addProduct(Product product) {
+    public void create(Product product) {
         entityManager.persist(product);
     }
 
     @Override
-    public Product getProductById(String productId) {
+    public Product findById(String productId) {
         return entityManager.find(Product.class, productId);
     }
 
     @Override
-    public void updateProduct(Product product) {
-        Product getProduct = getProductById(product.getId());
+    public void update(Product product) {
+        Product getProduct = findById(product.getId());
         getProduct.setName(product.getName());
         getProduct.setPackSize(product.getPackSize());
         getProduct.setType(product.getType());
@@ -39,12 +39,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void deleteProduct(String productId) {
-        entityManager.remove(getProductById(productId));
+    public void delete(String productId) {
+        entityManager.remove(findById(productId));
     }
 
     @Override
-    public List<Product> findAllProducts() {
+    public List<Product> findAll() {
         return entityManager.createQuery("from Product", Product.class).getResultList();
     }
 }

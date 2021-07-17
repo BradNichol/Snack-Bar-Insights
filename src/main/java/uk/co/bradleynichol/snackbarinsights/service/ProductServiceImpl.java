@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.co.bradleynichol.snackbarinsights.dao.ProductDAO;
+import uk.co.bradleynichol.snackbarinsights.dao.DAO;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.Product;
 
@@ -14,41 +14,41 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductDAO productDAO;
+    private final DAO<Product> productDAO;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    public ProductServiceImpl(ProductDAO productDAO) {
+    public ProductServiceImpl(DAO<Product> productDAO) {
         this.productDAO = productDAO;
     }
 
     @Override
     public boolean addProduct(ProductDTO productDTO) {
         Product product = convertToEntity(productDTO);
-        productDAO.addProduct(product);
+        productDAO.create(product);
         return true;
     }
 
     @Override
     public ProductDTO getProductById(String productId) {
-        return convertToDTO(productDAO.getProductById(productId));
+        return convertToDTO(productDAO.findById(productId));
     }
 
     @Override
     public void updateProduct(Product product) {
-        productDAO.updateProduct(product);
+        productDAO.update(product);
     }
 
     @Override
     public void deleteProduct(String productId) {
-        productDAO.deleteProduct(productId);
+        productDAO.delete(productId);
     }
 
     @Override
     public List<ProductDTO> getAllProducts() {
-        return productDAO.findAllProducts()
+        return productDAO.findAll()
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());

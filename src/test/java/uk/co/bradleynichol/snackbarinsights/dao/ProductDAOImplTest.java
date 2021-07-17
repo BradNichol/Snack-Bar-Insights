@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 class ProductDAOImplTest {
 
     private Product product;
-    private ProductDAO systemUnderTest;
+    private DAO<Product> systemUnderTest;
 
     @Mock
     private EntityManager entityManager;
@@ -34,7 +34,7 @@ class ProductDAOImplTest {
         product.setName("Prod1");
         when(entityManager.find(Product.class, "123")).thenReturn(product);
 
-        Product getProduct = systemUnderTest.getProductById("123");
+        Product getProduct = systemUnderTest.findById("123");
 
         assertThat(getProduct).isEqualTo(product);
         assertThat(getProduct.getName()).isEqualTo("Prod1");
@@ -44,7 +44,7 @@ class ProductDAOImplTest {
     void getProductById_GivenNonExistentId_ReturnsNull() {
         when(entityManager.find(any(), any())).thenReturn(null);
 
-        Product getProduct = systemUnderTest.getProductById("NoRecord");
+        Product getProduct = systemUnderTest.findById("NoRecord");
 
         assertThat(getProduct).isNull();
     }
