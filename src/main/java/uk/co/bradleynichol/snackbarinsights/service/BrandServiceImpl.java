@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BrandGenericServiceImpl implements GenericService<BrandDTO> {
+public class BrandServiceImpl implements GenericService<BrandDTO> {
 
 
     private final DAO<Brand> brandDAO;
@@ -21,7 +21,7 @@ public class BrandGenericServiceImpl implements GenericService<BrandDTO> {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public BrandGenericServiceImpl(DAO<Brand> brandDAO, ModelMapper modelMapper) {
+    public BrandServiceImpl(DAO<Brand> brandDAO, ModelMapper modelMapper) {
         this.brandDAO = brandDAO;
         this.modelMapper = modelMapper;
     }
