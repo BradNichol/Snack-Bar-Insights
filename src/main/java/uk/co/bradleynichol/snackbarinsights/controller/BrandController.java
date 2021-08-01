@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.BrandDTO;
-import uk.co.bradleynichol.snackbarinsights.service.BrandServiceImpl;
+import uk.co.bradleynichol.snackbarinsights.service.GenericService;
+
 import java.util.List;
 
 @RestController
@@ -18,16 +19,16 @@ import java.util.List;
 public class BrandController {
 
 
-    private final BrandServiceImpl brandService;
+    private final GenericService<BrandDTO> brandService;
 
     @Autowired
-    public BrandController(BrandServiceImpl brandService) {
+    public BrandController(GenericService<BrandDTO> brandService) {
         this.brandService = brandService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<Void> addBrand(@RequestBody BrandDTO brandDTO, UriComponentsBuilder builder) {
-        boolean flag = brandService.addBrand(brandDTO);
+        boolean flag = brandService.save(brandDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/api/brands").buildAndExpand(brandDTO.getId()).toUri());
@@ -36,25 +37,25 @@ public class BrandController {
 
     @GetMapping("/{id}")
     public ResponseEntity<BrandDTO> getBrandById(@PathVariable("id") String id) {
-        BrandDTO brandDTO = brandService.getBrandById(id);
+        BrandDTO brandDTO = brandService.getById(id);
         return new ResponseEntity<>(brandDTO, HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<BrandDTO>> getAllBrands() {
-        List<BrandDTO> brandDTOList = brandService.getAllBrands();
+        List<BrandDTO> brandDTOList = brandService.getAll();
         return new ResponseEntity<>(brandDTOList, HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<BrandDTO> updateBrand(@RequestBody BrandDTO brandDTO) {
-        brandService.updateBrand(brandDTO);
+        brandService.update(brandDTO);
         return new ResponseEntity<>(brandDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBrand(@PathVariable("id") String id) {
-        brandService.deleteBrand(id);
+        brandService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

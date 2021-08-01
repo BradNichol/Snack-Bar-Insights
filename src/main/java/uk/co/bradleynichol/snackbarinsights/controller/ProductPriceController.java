@@ -8,24 +8,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
-import uk.co.bradleynichol.snackbarinsights.service.ProductPriceService;
+import uk.co.bradleynichol.snackbarinsights.service.GenericService;
 
 @Hidden
 @RestController
 @RequestMapping("/api/price")
 public class ProductPriceController {
 
-    private final ProductPriceService productPriceService;
+    private final GenericService<ProductPrice> productPriceService;
 
     @Autowired
-    public ProductPriceController(ProductPriceService productPriceService) {
+    public ProductPriceController(GenericService<ProductPrice> productPriceService) {
         this.productPriceService = productPriceService;
     }
 
 
     @PostMapping("/add")
     public ResponseEntity<Void> addProductPrice(@RequestBody ProductPrice productPrice, UriComponentsBuilder builder) {
-        boolean flag = productPriceService.addProductPrice(productPrice);
+        boolean flag = productPriceService.save(productPrice);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("api/price").buildAndExpand(productPrice.getId()).toUri());
@@ -34,7 +34,7 @@ public class ProductPriceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductPrice> getProductPriceById(@PathVariable("id") String id) {
-        ProductPrice productPrice = productPriceService.getProductPriceById(id);
+        ProductPrice productPrice = productPriceService.getById(id);
         return new ResponseEntity<>(productPrice, HttpStatus.OK);
     }
 }

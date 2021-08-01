@@ -12,42 +12,43 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements GenericService<ProductDTO> {
 
     private final DAO<Product> productDAO;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ProductServiceImpl(DAO<Product> productDAO) {
+    public ProductServiceImpl(DAO<Product> productDAO, ModelMapper modelMapper) {
         this.productDAO = productDAO;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public boolean addProduct(ProductDTO productDTO) {
+    public boolean save(ProductDTO productDTO) {
         Product product = convertToEntity(productDTO);
         productDAO.create(product);
         return true;
     }
 
     @Override
-    public ProductDTO getProductById(String productId) {
+    public ProductDTO getById(String productId) {
         return convertToDTO(productDAO.findById(productId));
     }
 
     @Override
-    public void updateProduct(Product product) {
-        productDAO.update(product);
+    public void update(ProductDTO productDTO) {
+        productDAO.update(convertToEntity(productDTO));
     }
 
     @Override
-    public void deleteProduct(String productId) {
+    public void delete(String productId) {
         productDAO.delete(productId);
     }
 
     @Override
-    public List<ProductDTO> getAllProducts() {
+    public List<ProductDTO> getAll() {
         return productDAO.findAll()
                 .stream()
                 .map(this::convertToDTO)

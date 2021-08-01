@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.bradleynichol.snackbarinsights.dto.ScraperResourceDTO;
 import uk.co.bradleynichol.snackbarinsights.entity.ProductPrice;
-import uk.co.bradleynichol.snackbarinsights.service.ProductPriceService;
+import uk.co.bradleynichol.snackbarinsights.service.GenericService;
 import uk.co.bradleynichol.snackbarinsights.service.ScraperResourceService;
 
 import java.util.List;
@@ -17,13 +17,13 @@ public class ScraperService {
 
     private static final Logger logger = LoggerFactory.getLogger(ScraperService.class);
 
-    private final ProductPriceService productPriceService;
+    private final GenericService<ProductPrice> productPriceService;
     private final ScraperResourceService scraperResourceService;
     private final Scraper scraper;
 
 
     @Autowired
-    public ScraperService(ProductPriceService productPriceService, ScraperResourceService scraperResourceService, Scraper scraper) {
+    public ScraperService(GenericService<ProductPrice> productPriceService, ScraperResourceService scraperResourceService, Scraper scraper) {
         this.productPriceService = productPriceService;
         this.scraperResourceService = scraperResourceService;
         this.scraper = scraper;
@@ -47,7 +47,7 @@ public class ScraperService {
             } else {
                 failure.getAndIncrement();
             }
-            productPriceService.addProductPrice(productPrice);
+            productPriceService.save(productPrice);
         });
 
         logger.info("Scrape Finished. Successful: {}. Failed: {}.", success, failure);

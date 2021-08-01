@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.co.bradleynichol.snackbarinsights.dto.ProductDTO;
-import uk.co.bradleynichol.snackbarinsights.service.ProductServiceImpl;
+import uk.co.bradleynichol.snackbarinsights.service.GenericService;
 
 import java.util.List;
 
@@ -15,16 +15,16 @@ import java.util.List;
 @RequestMapping("/api/product")
 public class ProductController {
 
-    private final ProductServiceImpl productService;
+    private final GenericService<ProductDTO> productService;
 
     @Autowired
-    public ProductController(ProductServiceImpl productService) {
+    public ProductController(GenericService<ProductDTO> productService) {
         this.productService = productService;
     }
 
     @PostMapping("/add")
     public ResponseEntity<Void> addProduct(@RequestBody ProductDTO productDTO, UriComponentsBuilder builder) {
-        boolean flag = productService.addProduct(productDTO);
+        boolean flag = productService.save(productDTO);
         if (!flag) return new ResponseEntity<>(HttpStatus.CONFLICT);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("api/product").buildAndExpand(productDTO.getId()).toUri());
@@ -33,13 +33,13 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable("id") String id) {
-        ProductDTO productDTO = productService.getProductById(id);
+        ProductDTO productDTO = productService.getById(id);
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        List<ProductDTO> productDTOList = productService.getAllProducts();
+        List<ProductDTO> productDTOList = productService.getAll();
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
 

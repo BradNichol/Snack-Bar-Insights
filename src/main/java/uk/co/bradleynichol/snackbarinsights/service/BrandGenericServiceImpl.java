@@ -12,44 +12,45 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BrandServiceImpl implements BrandService {
+public class BrandGenericServiceImpl implements GenericService<BrandDTO> {
 
 
     private final DAO<Brand> brandDAO;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public BrandServiceImpl(DAO<Brand> brandDAO) {
+    public BrandGenericServiceImpl(DAO<Brand> brandDAO, ModelMapper modelMapper) {
         this.brandDAO = brandDAO;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public boolean addBrand(BrandDTO brandDTO) {
+    public boolean save(BrandDTO brandDTO) {
         Brand brand = convertToEntity(brandDTO);
         brandDAO.create(brand);
         return true;
     }
 
     @Override
-    public BrandDTO getBrandById(String brandId) {
+    public BrandDTO getById(String brandId) {
         return convertToDTO(brandDAO.findById(brandId));
 
     }
 
     @Override
-    public void updateBrand(BrandDTO brandDTO) {
+    public void update(BrandDTO brandDTO) {
         brandDAO.update(convertToEntity(brandDTO));
     }
 
     @Override
-    public void deleteBrand(String brandId) {
+    public void delete(String brandId) {
         brandDAO.delete(brandId);
     }
 
     @Override
-    public List<BrandDTO> getAllBrands() {
+    public List<BrandDTO> getAll() {
         return brandDAO.findAll()
                 .stream()
                 .map(this::convertToDTO)
